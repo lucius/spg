@@ -1,31 +1,35 @@
 #ifndef PAGINA_HPP_
 #define PAGINA_HPP_
 
-template<typename tipoDado>
+#include <queue>
+#include <vector>
+
+template<typename T>
 class Pagina
 {
 	public:
-		typedef std::vector< Pagina<tipoDado> > Paginacao;
+		typedef std::vector< Pagina<T> > Paginacao;
+		typedef std::queue< Pagina<T> > MemPrincipal;
 
 		Pagina( )
 		{
 			this->modificado = false;
 		}
 
-		/*const */tipoDado
+		T
 		getDado( )
 		{
 			return this->dado;
 		}
 
-		/*const */bool
+		bool
 		getModificado( )
 		{
 			return this->modificado;
 		}
 
 		void
-		setDado( /*const */tipoDado _dado )
+		setDado( T _dado )
 		{
 			this->dado = _dado;
 		}
@@ -37,7 +41,7 @@ class Pagina
 		}
 
 		void
-		operator =( tipoDado _dado )
+		operator =( T _dado )
 		{
 			this->setDado( _dado );
 		}
@@ -51,7 +55,7 @@ class Pagina
 	protected:
 
 	private:
-		tipoDado
+		T
 		dado;
 
 		bool
