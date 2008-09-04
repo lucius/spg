@@ -3,7 +3,9 @@
 
 namespace spg
 {
-	#include "../include/Pagina.hpp"
-}
+	#include "../include/Pagina.h"
+//	#include "../include/StructPresenca.h"
+//	#include "../include/Controlador.h"
+};
 
 #endif /* SPG_H_ */
