@@ -1,5 +1,7 @@
 #include <iostream>
 #include <sstream>
+#include <fstream>
+#include <string>
 
 #include "../include/Controlador.h"
 
@@ -15,8 +17,29 @@ Controlador::Controlador( )
 void
 Controlador::carregaInstrucoes( const std::string _nomeArquivo )
 {
+	std::ifstream
+	file( _nomeArquivo.c_str(), std::ifstream::in );
 
+	std::string
+	buffer;
 
+	int
+	i;
+
+	if( file.good() )
+	{
+		for( i = 0; i<64; i++ )
+		{
+			file >> buffer;
+			this->arquivoPaginacao[i] = buffer;
+			if( file.bad() )
+			{
+				break;
+			}
+		}
+	}
+
+	file.close();
 }
 
 void
@@ -133,15 +156,17 @@ Controlador::trocaPagina( const unsigned int _origem )
 	}
 	else
 	{
-		destino = this->filaRemocao.size() -1;
+		destino = this->filaRemocao.size() - 1;
 
 		this->memoriaPrincipal[destino] = this->arquivoPaginacao[_origem];
 		this->mapaMemoria[_origem].enderecoPrincipal = destino;
 		this->mapaMemoria[_origem].presente = true;
-
-		this->filaRemocao.pop();
-		tmp.enderecoPaginacao = _origem;
-		tmp.enderecoPrincipal = destino;
-		this->filaRemocao.push( tmp );
 	}
+
+	this->filaRemocao.pop();
+	tmp.enderecoPaginacao = _origem;
+	tmp.enderecoPrincipal = destino;
+	this->filaRemocao.push( tmp );
+
+	return destino;
 }
