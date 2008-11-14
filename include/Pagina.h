@@ -9,7 +9,6 @@ class Pagina
 {
 	public:
 		typedef std::vector< Pagina<T> > Paginacao;
-		typedef std::queue< Pagina<T> > MemPrincipal;
 
 		Pagina( )
 		{

@@ -1,0 +1,41 @@
+*******
+* SPG *
+*******
+
+	O SPG e um simulador de gerenciamento de memoria que foi
+implementado pelos alunos
+
+	**************************************
+	* Evandro Couto Mantese              *
+	* Marcus Vinicius Ventura Bortolotti *
+	* Rafael de Paula Herrera            *
+	**************************************
+
+para a disciplina de Sistemas Operacionais, ministrada pelo professor
+Fabio Sakuray.
+	O simulador foi desenvolvido em C++ e Qt3.3.8b
+
+
+
+*******************************************
+* COMO CRIAR UM ARQUIVO DE EXECUCAO 'SPG' *
+*******************************************
+
+	As instrucoes basicas que o SPG reconhece são:
+
+	* SOMA A B	=] (A+B)			[=
+	* SUBT A B	=] (A-B)			[=
+	* MULT A B	=] (A*B)			[=
+	* DIVI A B	=] (A/B)			[=
+	* PULA A	=] pula para linha do codigo A	[=
+
+	Um exemplo de codigo '.spg' pode ser encontrado na pasta 'exemplo'
+
+
+
+*****************************
+* COMO UTILIZAR O SIMULADOR *
+*****************************
+
+	Digite em seu terminal: 'sh executa-simulador.sh' (sem as aspas).
+Bom Uso! =D
