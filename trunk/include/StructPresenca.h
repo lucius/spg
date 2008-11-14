@@ -8,6 +8,7 @@ typedef struct
 
 	unsigned int
 	enderecoPrincipal;
+
 }StructPresenca;
 
 #endif /* STRUCTPRESENCA_H_ */

@@ -8,6 +8,7 @@ typedef struct
 
 	unsigned int
 	enderecoPrincipal;
+
 }StructAssociacao;
 
 #endif /* STRUCTASSOCIACAO_H_ */
