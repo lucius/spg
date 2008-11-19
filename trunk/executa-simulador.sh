@@ -1,48 +1,46 @@
 #!/bin/bash
 
-PASTAPROJETO=`pwd`
-CAMINHOSIMULADOR=$PASTAPROJETO/interface/interface
-MAKE="make all --silent"
-MAKECLEAN="make clean --silent"
+PATH_PROJETO=`which $0`
+DIR_PROJETO=`dirname $PATH_PROJETO`
 
-function compila_simulador
-{
-	echo -e " \n** Iniciando a compilacao."
-
-	cd $PASTAPROJETO/interface
-
-	exec $MAKE
-	wait
-
-	exec $MAKECLEAN
-	wait
-
-	if [ ! -e "interface" ]
-	then
-		echo -e "\n\n ** Ocorreu algum problema na compilacao. Tente novamente por favor";
-	else
-		echo -e " [OK] \n\n Simulador em Execucao.";
-		exec ./interface &
-
-		wait
-
-		echo -e "\n Obrigado por utilizar o SPG =D.";
-	fi
-
-}
-
-echo -e "\nTentando executar o SPG..."
-
-if [ ! -e $CAMINHOSIMULADOR ]
+if [ `pwd` != "$DIR_PROJETO" ];
 then
-	echo -e "\nErro: '$CAMINHOSIMULADOR' nao existe."
-	compila_simulador
+	pushd $DIR_PROJETO >/dev/null 2>&1
+	POP_P=1
 fi
 
-exec ./interface/interface &
-echo -e " [OK] \n\n Simulador em Execucao."
+SIMULADOR=$DIR_PROJETO/interface/spg
+
+if [ ! -e $SIMULADOR ];
+then
+	echo -e "ATENCAO: O executavel nao existe... \n\nTentando compilar..."
+
+	pushd $DIR_PROJETO/interface >/dev/null 2>&1
+
+	make all --silent
+	make clean --silent
+
+	if [ "$?" == "0" ];
+	then
+		echo -e "Sucesso: Iniciando execucao..."
+		$SIMULADOR >/dev/null 2>&1 &
+	else
+		echo "ERRO: Falha ao compilar. Abortando..."
+	fi
+
+	popd >/dev/null 2>&1
+
+
+else
+	$SIMULADOR >/dev/null 2>&1 &
+
+fi
 
 wait
 
 echo -e "\n Obrigado por utilizar o SPG =D.";
 
+if [ "$POP_P" ==  "1" ];
+then
+	popd >/dev/null 2>&1
+fi
